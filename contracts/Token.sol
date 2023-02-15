@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
+import "hardhat/console.sol";
+
 contract Token {
   
   string public name = "AK Hardhat Token";
@@ -18,6 +20,10 @@ contract Token {
   }
 
   function transfer(address to, uint256 amount)  external {
+    
+    console.log("Sender's balance is %s token", balances[msg.sender]);
+    console.log("Trying send %s token to %s", amount, to);
+
     require(balances[msg.sender] >= amount, "Not enoguh tokens");
 
     balances[msg.sender] -= amount;
